@@ -79,7 +79,7 @@ namespace Cinepolis.Infrastructure.Repositories
                     foto = "",
                     activo = true,
                     verificado = usuario.esAdministrador ? true : false,
-                    rolId = usuario.esAdministrador ? 2 : 1
+                    rolId = usuario.esAdministrador ? 1 : 2
 
                 };
                 _context.Usuario.Add(user);

@@ -21,6 +21,7 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(b
 
 builder.Services.AddTransient<IAutenticacionRepository, AutenticacionRepository>();
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
+builder.Services.AddTransient<IRolesRepository, RolesRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

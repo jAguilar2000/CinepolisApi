@@ -9,7 +9,6 @@ namespace Cinepolis.Core.ViewModels
         public string nombres { get; set; } = string.Empty;
         public string apellidos { get; set; } = string.Empty;
         public string telefono { get; set; } = string.Empty;
-        public string? direccion { get; set; } = string.Empty;
         public string correo { get; set; } = string.Empty;
         public bool esAdministrador { get; set; }
         [NotMapped]
