@@ -8,7 +8,7 @@ namespace Cinepolis.Infrastructure.Data
         public DatabaseContext()
         {
             Categoria = Set<Categoria>();
-            Cine = Set<Cine>();
+            Cines = Set<Cines>();
             Configuraciones = Set<Configuraciones>();
             EmailTemplete = Set<EmailTemplete>();
             Genero = Set<Genero>();
@@ -17,7 +17,7 @@ namespace Cinepolis.Infrastructure.Data
             Precio = Set<Precio>();
             Producto = Set<Producto>();
             Rol = Set<Rol>();
-            Sala = Set<Sala>();
+            Salas = Set<Salas>();
             TipoProyeccion = Set<TipoProyeccion>();
             Usuario = Set<Usuario>();
             Venta = Set<Venta>();
@@ -27,7 +27,7 @@ namespace Cinepolis.Infrastructure.Data
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Categoria = Set<Categoria>();
-            Cine = Set<Cine>();
+            Cines = Set<Cines>();
             Configuraciones = Set<Configuraciones>();
             EmailTemplete = Set<EmailTemplete>();
             Genero = Set<Genero>();
@@ -36,7 +36,7 @@ namespace Cinepolis.Infrastructure.Data
             Precio = Set<Precio>();
             Producto = Set<Producto>();
             Rol = Set<Rol>();
-            Sala = Set<Sala>();
+            Salas = Set<Salas>();
             TipoProyeccion = Set<TipoProyeccion>();
             Usuario = Set<Usuario>();
             Venta = Set<Venta>();
@@ -45,7 +45,7 @@ namespace Cinepolis.Infrastructure.Data
         }
 
         public virtual DbSet<Categoria> Categoria { get; set; }
-        public virtual DbSet<Cine> Cine { get; set; }
+        public virtual DbSet<Cines> Cines { get; set; }
         public virtual DbSet<Configuraciones> Configuraciones { get; set; }
         public virtual DbSet<EmailTemplete> EmailTemplete { get; set; }
         public virtual DbSet<Genero> Genero { get; set; }
@@ -54,7 +54,7 @@ namespace Cinepolis.Infrastructure.Data
         public virtual DbSet<Precio> Precio { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
-        public virtual DbSet<Sala> Sala { get; set; }
+        public virtual DbSet<Salas> Salas { get; set; }
         public virtual DbSet<TipoProyeccion> TipoProyeccion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Venta> Venta { get; set; }

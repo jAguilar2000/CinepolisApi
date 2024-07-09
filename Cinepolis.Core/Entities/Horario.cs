@@ -14,7 +14,7 @@ namespace Cinepolis.Core.Entities
         public int tipoProyeccionId { get; set; }
         public bool activo { get; set; }
         [ForeignKey("salaId")]
-        public virtual Sala? Sala { get; set; }
+        public virtual Salas? Sala { get; set; }
         [ForeignKey("tipoProyeccionId")]
         public virtual TipoProyeccion? TipoProyeccion { get; set; }
     }

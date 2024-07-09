@@ -23,6 +23,9 @@ builder.Services.AddTransient<IAutenticacionRepository, AutenticacionRepository>
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
 builder.Services.AddTransient<IRolesRepository, RolesRepository>();
 builder.Services.AddTransient<IPeliculaRepository, PeliculaRepository>();
+builder.Services.AddTransient<IProductoRepository, ProductoRepository>();
+builder.Services.AddTransient<ICinesRepository, CinesRepository>();
+builder.Services.AddTransient<ISalasRepository, SalasRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
