@@ -22,6 +22,7 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(b
 builder.Services.AddTransient<IAutenticacionRepository, AutenticacionRepository>();
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
 builder.Services.AddTransient<IRolesRepository, RolesRepository>();
+builder.Services.AddTransient<IPeliculaRepository, PeliculaRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -46,7 +47,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddSwaggerGen(option =>
 {
-    option.SwaggerDoc("v1", new OpenApiInfo { Title = "LaEconómica API", Version = "v1" });
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Cinepolis API", Version = "v1" });
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -83,9 +84,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
+app.UseCors("corspolicity");
 app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

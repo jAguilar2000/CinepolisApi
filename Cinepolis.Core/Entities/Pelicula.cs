@@ -15,6 +15,8 @@ namespace Cinepolis.Core.Entities
         public DateTime fechaLanzamiento { get; set; }
         public string foto { get; set; } = string.Empty;
         public bool activo { get; set; }
+        [NotMapped]
+        public string imgBase64 { get; set; } = string.Empty;
         [ForeignKey("generoId")]
         public virtual Genero? Genero { get; set; }
     }

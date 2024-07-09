@@ -10,7 +10,7 @@ namespace Cinepolis.Infrastructure.Repositories
             var credentials = new NetworkCredential("jjaguilar@uth.hn", "P10");
             var mail = new MailMessage()
             {
-                From = new MailAddress("jjaguilar@uth.hn", "La Económica | Notificaciones."),
+                From = new MailAddress("jjaguilar@uth.hn", "Cinema | Notificaciones."),
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = isHtml
