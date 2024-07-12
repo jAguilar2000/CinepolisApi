@@ -18,7 +18,7 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             try
             {
-                var result = await _context.Pelicula.ToListAsync();
+                var result = await _context.Pelicula.Include(x=> x.Genero).ToListAsync();
                 return result;
             }
             catch (Exception ex)
@@ -58,8 +58,8 @@ namespace Cinepolis.Infrastructure.Repositories
                 if (String.IsNullOrEmpty(pelicula.sinopsis))
                     throw new BusinessException("Favor llenar campo Sinopsis.");
 
-                if (String.IsNullOrEmpty(pelicula.foto))
-                    throw new BusinessException("Falta la fotografia.");
+                //if (String.IsNullOrEmpty(pelicula.foto))
+                //    throw new BusinessException("Falta la fotografia.");
 
                 var peliDB = await _context.Pelicula.FirstOrDefaultAsync(x => x.titulo == pelicula.titulo);
 
@@ -74,7 +74,7 @@ namespace Cinepolis.Infrastructure.Repositories
                 pelicula.activo = true;
                 Pelicula newPelicula = new Pelicula();
                 newPelicula = pelicula;
-                _context.Pelicula.Add(newPelicula);
+              
 
                 if (!String.IsNullOrEmpty(pelicula.imgBase64))
                 {
@@ -88,6 +88,8 @@ namespace Cinepolis.Infrastructure.Repositories
                     string urlFoto = await UploadFotoBase64(img);
                     newPelicula.foto = urlFoto;
                 }
+                newPelicula.Genero = null;
+                _context.Pelicula.Add(newPelicula);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -113,8 +115,8 @@ namespace Cinepolis.Infrastructure.Repositories
                 if (String.IsNullOrEmpty(pelicula.sinopsis))
                     throw new BusinessException("Favor llenar campo Sinopsis.");
 
-                if (String.IsNullOrEmpty(pelicula.foto))
-                    throw new BusinessException("Falta la fotografia.");
+                //if (String.IsNullOrEmpty(pelicula.foto))
+                //    throw new BusinessException("Falta la fotografia.");
 
                 if (!String.IsNullOrEmpty(pelicula.imgBase64))
                 {
@@ -130,6 +132,10 @@ namespace Cinepolis.Infrastructure.Repositories
                 }
 
                 currientPeli.activo = pelicula.activo;
+                currientPeli.sinopsis = pelicula.sinopsis;
+                currientPeli.titulo= pelicula.titulo;
+                currientPeli.hora = pelicula.hora;
+                currientPeli.minutos = pelicula.minutos;
                 int row = await _context.SaveChangesAsync();
                 return row > 0;
             }

@@ -26,6 +26,7 @@ builder.Services.AddTransient<IPeliculaRepository, PeliculaRepository>();
 builder.Services.AddTransient<IProductoRepository, ProductoRepository>();
 builder.Services.AddTransient<ICinesRepository, CinesRepository>();
 builder.Services.AddTransient<ISalasRepository, SalasRepository>();
+builder.Services.AddTransient<IGeneroRepository, GenerosRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

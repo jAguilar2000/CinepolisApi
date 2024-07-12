@@ -37,7 +37,7 @@ namespace Cinepolis.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Pelicula pelicula)
+        public async Task<IActionResult> Post([FromBody]Pelicula pelicula)
         {
             await _peliculaRepository.Insert(pelicula);
             var response = new ApiResponse<Pelicula>(pelicula);
@@ -45,7 +45,7 @@ namespace Cinepolis.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Pelicula pelicula)
+        public async Task<IActionResult> Put([FromBody] Pelicula pelicula)
         {
             var result = await _peliculaRepository.Edit(pelicula);
             var response = new ApiResponse<bool>(result);
