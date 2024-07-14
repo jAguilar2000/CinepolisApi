@@ -86,10 +86,11 @@ namespace Cinepolis.Infrastructure.Repositories
                 var currientSala = await Get(sala.salaId);
 
                 if (currientSala == null)
-                    throw new BusinessException("Advertencia, Pelicula no existe.");
+                    throw new BusinessException("Advertencia, Sala no existe.");
                 if (String.IsNullOrEmpty(sala.descripcion))
                     throw new BusinessException("Favor llenar campo Descripción.");
-
+                currientSala.descripcion = sala.descripcion;
+                currientSala.capacidad = sala.capacidad;
                 currientSala.activo = sala.activo;
                 int row = await _context.SaveChangesAsync();
                 return row > 0;
