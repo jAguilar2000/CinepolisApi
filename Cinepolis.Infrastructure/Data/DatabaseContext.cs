@@ -12,7 +12,7 @@ namespace Cinepolis.Infrastructure.Data
             Configuraciones = Set<Configuraciones>();
             EmailTemplete = Set<EmailTemplete>();
             Genero = Set<Genero>();
-            Horario = Set<Horario>();
+            Horarios = Set<Horarios>();
             Pelicula = Set<Pelicula>();
             Precio = Set<Precio>();
             Producto = Set<Producto>();
@@ -31,7 +31,7 @@ namespace Cinepolis.Infrastructure.Data
             Configuraciones = Set<Configuraciones>();
             EmailTemplete = Set<EmailTemplete>();
             Genero = Set<Genero>();
-            Horario = Set<Horario>();
+            Horarios = Set<Horarios>();
             Pelicula = Set<Pelicula>();
             Precio = Set<Precio>();
             Producto = Set<Producto>();
@@ -49,7 +49,7 @@ namespace Cinepolis.Infrastructure.Data
         public virtual DbSet<Configuraciones> Configuraciones { get; set; }
         public virtual DbSet<EmailTemplete> EmailTemplete { get; set; }
         public virtual DbSet<Genero> Genero { get; set; }
-        public virtual DbSet<Horario> Horario { get; set; }
+        public virtual DbSet<Horarios> Horarios { get; set; }
         public virtual DbSet<Pelicula> Pelicula { get; set; }
         public virtual DbSet<Precio> Precio { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }

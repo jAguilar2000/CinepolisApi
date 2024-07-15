@@ -23,7 +23,7 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             try
             {
-                var result = await _context.Cines.ToListAsync();
+                var result = await _context.Cines.AsNoTracking().ToListAsync();
                 return result;
             }
             catch (Exception ex)

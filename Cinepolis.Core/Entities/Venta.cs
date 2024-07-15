@@ -14,6 +14,6 @@ namespace Cinepolis.Core.Entities
         [ForeignKey("usuarioId")]
         public virtual Usuario? Usuario { get; set; }
         [ForeignKey("horarioId")]
-        public virtual Horario? Horario { get; set; }
+        public virtual Horarios? Horario { get; set; }
     }
 }
