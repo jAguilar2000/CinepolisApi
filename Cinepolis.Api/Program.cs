@@ -28,6 +28,7 @@ builder.Services.AddTransient<ICinesRepository, CinesRepository>();
 builder.Services.AddTransient<ISalasRepository, SalasRepository>();
 builder.Services.AddTransient<IGeneroRepository, GenerosRepository>();
 builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
+builder.Services.AddTransient<IPreciosRepository, PreciosRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

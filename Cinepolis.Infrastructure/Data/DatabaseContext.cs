@@ -14,7 +14,7 @@ namespace Cinepolis.Infrastructure.Data
             Genero = Set<Genero>();
             Horarios = Set<Horarios>();
             Pelicula = Set<Pelicula>();
-            Precio = Set<Precio>();
+            Precios = Set<Precios>();
             Producto = Set<Producto>();
             Rol = Set<Rol>();
             Salas = Set<Salas>();
@@ -33,7 +33,7 @@ namespace Cinepolis.Infrastructure.Data
             Genero = Set<Genero>();
             Horarios = Set<Horarios>();
             Pelicula = Set<Pelicula>();
-            Precio = Set<Precio>();
+            Precios = Set<Precios>();
             Producto = Set<Producto>();
             Rol = Set<Rol>();
             Salas = Set<Salas>();
@@ -51,7 +51,7 @@ namespace Cinepolis.Infrastructure.Data
         public virtual DbSet<Genero> Genero { get; set; }
         public virtual DbSet<Horarios> Horarios { get; set; }
         public virtual DbSet<Pelicula> Pelicula { get; set; }
-        public virtual DbSet<Precio> Precio { get; set; }
+        public virtual DbSet<Precios> Precios { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Salas> Salas { get; set; }
