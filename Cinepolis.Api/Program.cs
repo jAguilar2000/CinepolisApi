@@ -30,6 +30,7 @@ builder.Services.AddTransient<IGeneroRepository, GenerosRepository>();
 builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
 builder.Services.AddTransient<IPreciosRepository, PreciosRepository>();
 builder.Services.AddTransient<ITipoProyeccionRepository, TipoProyeccionRepository>();
+builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
