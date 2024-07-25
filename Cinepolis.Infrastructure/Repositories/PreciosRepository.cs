@@ -59,7 +59,7 @@ namespace Cinepolis.Infrastructure.Repositories
 
 
 
-                bool existePrecoi = await _context.Precios.AnyAsync(x => x.categoriaId == precios.categoriaId && x.activo == true);
+                bool existePrecoi = await _context.Precios.AnyAsync(x => x.categoriaId == precios.categoriaId && x.activo == true && x.tipoProyeccionId == precios.tipoProyeccionId);
 
                 if (existePrecoi)
                     throw new BusinessException("Ya existe el precio para esta categoria.");

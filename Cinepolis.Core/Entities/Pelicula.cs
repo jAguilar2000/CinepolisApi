@@ -8,6 +8,7 @@ namespace Cinepolis.Core.Entities
         [Key]
         public int peliculaId { get; set; }
         public int generoId { get; set; }
+        public int tipoPeliculaId { get; set; }
         public string titulo { get; set; } = string.Empty;
         public string sinopsis { get; set; } = string.Empty;
         public int hora { get; set; }
@@ -19,5 +20,8 @@ namespace Cinepolis.Core.Entities
         public string imgBase64 { get; set; } = string.Empty;
         [ForeignKey("generoId")]
         public virtual Genero? Genero { get; set; }
+
+        [ForeignKey("tipoPeliculaId")]
+        public virtual TipoPelicula? TipoPelicula { get; set; }
     }
 }

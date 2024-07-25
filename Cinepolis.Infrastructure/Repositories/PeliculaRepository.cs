@@ -18,7 +18,7 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             try
             {
-                var result = await _context.Pelicula.Include(x=> x.Genero).ToListAsync();
+                var result = await _context.Pelicula.Include(x=> x.Genero).Include(x=> x.TipoPelicula).ToListAsync();
                 return result;
             }
             catch (Exception ex)
@@ -54,6 +54,9 @@ namespace Cinepolis.Infrastructure.Repositories
 
                 if (pelicula.generoId == 0)
                     throw new BusinessException("Favor llenar campo Genero.");
+
+                if (pelicula.tipoPeliculaId == 0)
+                    throw new BusinessException("Favor llenar campo Tipo Pelicula.");
 
                 if (String.IsNullOrEmpty(pelicula.sinopsis))
                     throw new BusinessException("Favor llenar campo Sinopsis.");
@@ -136,6 +139,7 @@ namespace Cinepolis.Infrastructure.Repositories
                 currientPeli.titulo= pelicula.titulo;
                 currientPeli.hora = pelicula.hora;
                 currientPeli.minutos = pelicula.minutos;
+                currientPeli.tipoPeliculaId = pelicula.tipoPeliculaId;
                 int row = await _context.SaveChangesAsync();
                 return row > 0;
             }

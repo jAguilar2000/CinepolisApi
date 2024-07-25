@@ -23,6 +23,7 @@ namespace Cinepolis.Infrastructure.Data
             Venta = Set<Venta>();
             VentaEntradasDetalle = Set<VentaEntradasDetalle>();
             VentaProductoDetalle = Set<VentaProductoDetalle>();
+            TipoPelicula = Set<TipoPelicula>();
         }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -42,6 +43,7 @@ namespace Cinepolis.Infrastructure.Data
             Venta = Set<Venta>();
             VentaEntradasDetalle = Set<VentaEntradasDetalle>();
             VentaProductoDetalle = Set<VentaProductoDetalle>();
+            TipoPelicula = Set<TipoPelicula>();
         }
 
         public virtual DbSet<Categoria> Categoria { get; set; }
@@ -60,5 +62,6 @@ namespace Cinepolis.Infrastructure.Data
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaEntradasDetalle> VentaEntradasDetalle { get; set; }
         public virtual DbSet<VentaProductoDetalle> VentaProductoDetalle { get; set; }
+        public virtual DbSet<TipoPelicula> TipoPelicula { get; set; }
     }
 }
