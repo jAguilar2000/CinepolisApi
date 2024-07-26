@@ -2,7 +2,6 @@
 using Cinepolis.Core.Entities;
 using Cinepolis.Core.Interface;
 using Cinepolis.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cinepolis.Api.Controllers
@@ -22,6 +21,30 @@ namespace Cinepolis.Api.Controllers
         {
             var result = await _generoRepository.Gets();
             var response = new ApiResponse<IEnumerable<Genero>>(result);
+            return Ok(response);
+        }
+
+        [HttpGet("{generoId}")]
+        public async Task<IActionResult> Get(int generoId)
+        {
+            var result = await _generoRepository.Get(generoId);
+            var response = new ApiResponse<Genero>(result);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Genero genero)
+        {
+            await _generoRepository.Insert(genero);
+            var response = new ApiResponse<Genero>(genero);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(Genero genero)
+        {
+            var result = await _generoRepository.Edit(genero);
+            var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
     }

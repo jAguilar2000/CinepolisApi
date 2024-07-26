@@ -1,14 +1,12 @@
 ﻿using Cinepolis.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cinepolis.Core.Interface
 {
     public interface ITipoProyeccionRepository
     {
         Task<IEnumerable<TipoProyeccion>> Gets();
+        Task<TipoProyeccion> Get(int tipoProyeccionId);
+        Task Insert(TipoProyeccion tipoProyeccion);
+        Task<bool> Edit(TipoProyeccion tipoProyeccion);
     }
 }

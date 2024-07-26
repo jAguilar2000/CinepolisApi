@@ -1,7 +1,6 @@
 ﻿using Cinepolis.Api.Responses;
 using Cinepolis.Core.Entities;
 using Cinepolis.Core.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cinepolis.Api.Controllers
@@ -21,6 +20,30 @@ namespace Cinepolis.Api.Controllers
         {
             var result = await _categoriaRepository.Gets();
             var response = new ApiResponse<IEnumerable<Categoria>>(result);
+            return Ok(response);
+        }
+
+        [HttpGet("{categoriaId}")]
+        public async Task<IActionResult> Get(int categoriaId)
+        {
+            var result = await _categoriaRepository.Get(categoriaId);
+            var response = new ApiResponse<Categoria>(result);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Categoria categoria)
+        {
+            await _categoriaRepository.Insert(categoria);
+            var response = new ApiResponse<Categoria>(categoria);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(Categoria categoria)
+        {
+            var result = await _categoriaRepository.Edit(categoria);
+            var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
     }

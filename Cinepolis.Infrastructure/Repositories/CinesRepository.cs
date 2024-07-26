@@ -5,11 +5,6 @@ using Cinepolis.Core.ViewModels;
 using Cinepolis.Infrastructure.Data;
 using CloudinaryDotNet.Actions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cinepolis.Infrastructure.Repositories
 {
