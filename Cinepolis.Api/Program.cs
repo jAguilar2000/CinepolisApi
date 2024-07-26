@@ -32,6 +32,7 @@ builder.Services.AddTransient<IPreciosRepository, PreciosRepository>();
 builder.Services.AddTransient<ITipoProyeccionRepository, TipoProyeccionRepository>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ITipoPeliculaRepository, TipoPeliculaRepository>();
+builder.Services.AddTransient<IVentasRepository, VentasRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
