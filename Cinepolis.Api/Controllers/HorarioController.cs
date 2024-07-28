@@ -47,5 +47,14 @@ namespace Cinepolis.Api.Controllers
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("asientosOcupados")]
+        public async Task<IActionResult> Gets(int horarioId)
+        {
+            var result = await _horarioRepository.GetAsientosOcupados(horarioId);
+            var response = new ApiResponse<IEnumerable<SP_AsientosOcupados>>(result);
+            return Ok(response);
+        }
     }
 }

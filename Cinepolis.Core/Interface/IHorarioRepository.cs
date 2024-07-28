@@ -8,5 +8,6 @@ namespace Cinepolis.Core.Interface
         Task<Horarios> Get(int horarioId);
         Task Insert(Horarios horario);
         Task<bool> Edit(Horarios horario);
+        Task<IEnumerable<SP_AsientosOcupados>> GetAsientosOcupados(int horarioId);
     }
 }

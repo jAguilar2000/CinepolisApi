@@ -3,6 +3,7 @@ using Cinepolis.Core.Exceptions;
 using Cinepolis.Core.Interface;
 using Cinepolis.Core.ViewModels;
 using Cinepolis.Infrastructure.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cinepolis.Infrastructure.Repositories
@@ -107,6 +108,23 @@ namespace Cinepolis.Infrastructure.Repositories
                 int row = await _context.SaveChangesAsync();
                 return row > 0;
 
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException($"Error: {ex.Message}.");
+            }
+        }
+
+        public async Task<IEnumerable<SP_AsientosOcupados>> GetAsientosOcupados(int horarioId)
+        {
+            try
+            {
+                var sql = "EXEC SP_AsientosOcupados @Horario";
+                var paramValue = new SqlParameter("@Horario", horarioId);
+
+                return await _context.SP_AsientosOcupados
+                    .FromSqlRaw(sql, paramValue)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
