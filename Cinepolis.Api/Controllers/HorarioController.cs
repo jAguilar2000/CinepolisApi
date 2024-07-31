@@ -17,9 +17,9 @@ namespace Cinepolis.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Gets()
+        public async Task<IActionResult> Gets(int? peliculaId)
         {
-            var result = await _horarioRepository.Gets();
+            var result = await _horarioRepository.Gets(peliculaId);
             var response = new ApiResponse<IEnumerable<Horarios>>(result);
             return Ok(response);
         }

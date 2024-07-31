@@ -15,11 +15,11 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<Horarios>> Gets()
+        public async Task<IEnumerable<Horarios>> Gets(int? peliculaId)
         {
             try
             {
-                var result = await _context.Horarios.ToListAsync();
+                var result = await _context.Horarios.Where(x => peliculaId != null ? x.peliculaId == peliculaId : true).ToListAsync();
                 return result;
             }
             catch (Exception ex)
