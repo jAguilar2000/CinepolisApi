@@ -15,6 +15,43 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             _context = context;
         }
+
+        public async Task<IEnumerable<Venta>> Gets(int? userId)
+        {
+            try
+            {
+                var list = await _context.Venta
+                    .Where(x => userId == null ? true : x.usuarioId == userId)
+                    .Include(x => x.ventaEntradasDetalles)
+                    .Include(x => x.ventaProductoDetalles)
+                    .ToListAsync();
+
+                return list;
+            }
+            catch (Exception ex) 
+            {
+                throw new BusinessException($"Error: {ex.Message}.");
+            }
+        }
+
+        public async Task<IEnumerable<Venta>> GetsById(int? ventaId)
+        {
+            try
+            {
+                var list = await _context.Venta
+                    .Where(x => ventaId == null ? true : x.ventaId == ventaId)
+                    .Include(x => x.ventaEntradasDetalles)
+                    .Include(x => x.ventaProductoDetalles)
+                    .ToListAsync();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException($"Error: {ex.Message}.");
+            }
+        }
+
         public async Task InsertVenta(VentaViewModels venta)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())

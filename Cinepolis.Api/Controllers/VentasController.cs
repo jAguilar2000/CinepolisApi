@@ -1,4 +1,5 @@
 ﻿using Cinepolis.Api.Responses;
+using Cinepolis.Core.Entities;
 using Cinepolis.Core.Interface;
 using Cinepolis.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,24 @@ namespace Cinepolis.Api.Controllers
         public VentasController(IVentasRepository ventasRepository)
         {
             _ventasRepository = ventasRepository;
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Gets(int? userId)
+        {
+            var result = await _ventasRepository.Gets(userId);
+            var response = new ApiResponse<IEnumerable<Venta>>(result);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("VentaById")]
+        public async Task<IActionResult> GetById(int? ventaId)
+        {
+            var result = await _ventasRepository.GetsById(ventaId);
+            var response = new ApiResponse<IEnumerable<Venta>>(result);
+            return Ok(response);
         }
 
         [HttpPost]

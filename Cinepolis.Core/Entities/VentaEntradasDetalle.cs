@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cinepolis.Core.Entities
 {
@@ -12,6 +13,7 @@ namespace Cinepolis.Core.Entities
         public decimal precio { get; set; }
         public decimal cantidad { get; set; }
         [ForeignKey("ventaId")]
+        [JsonIgnore]
         public virtual Venta? Venta { get; set; }
     }
 }
