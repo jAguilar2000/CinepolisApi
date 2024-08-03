@@ -6,7 +6,7 @@ namespace Cinepolis.Core.Interface
     public interface IVentasRepository
     {
         Task<IEnumerable<Venta>> Gets(int? userId);
-        Task<IEnumerable<Venta>> GetsById(int? ventaId);
+        Task<VentasHeaderViewModel> GetsById(int? ventaId);
         Task InsertVenta(VentaViewModels venta);
         Task<IEnumerable<VentasResumenViewModel>> GetsResumen(int? userId);
     }

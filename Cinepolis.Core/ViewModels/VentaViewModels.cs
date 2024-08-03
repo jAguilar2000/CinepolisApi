@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Cinepolis.Core.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinepolis.Core.ViewModels
 {
@@ -7,8 +8,8 @@ namespace Cinepolis.Core.ViewModels
         public int ventaId { get; set; }
         public int usuarioId { get; set; }
         public int horarioId { get; set; }
-        public List<VentaEntradaDetalleViewModels?> VentaEntrada {  get; set; }
-        public List<VentaProductoDetalleViewModels?> VentaProducto {  get; set; }
+        public List<VentaEntradaDetalleViewModels?> VentaEntrada { get; set; }
+        public List<VentaProductoDetalleViewModels?> VentaProducto { get; set; }
     }
 
     public class VentaEntradaDetalleViewModels
@@ -42,5 +43,17 @@ namespace Cinepolis.Core.ViewModels
         public int boletosComprados { get; set; }
         public string horaInicio { get; set; }
         public string sala { get; set; }
+    }
+
+
+    public class VentasHeaderViewModel
+    {
+        public int ventaId { get; set; }
+        public string sala { get; set; }
+        public string proyeccion { get; set; }
+        public string genero { get; set; }
+        public DateTime fecha { get; set; }
+        public string titulo { get; set; }
+        public List<VentaEntradasDetalle> boletos { get; set; }
     }
 }

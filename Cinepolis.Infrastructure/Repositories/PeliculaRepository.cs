@@ -92,6 +92,7 @@ namespace Cinepolis.Infrastructure.Repositories
                     newPelicula.foto = urlFoto;
                 }
                 newPelicula.Genero = null;
+                newPelicula.TipoPelicula = null;
                 _context.Pelicula.Add(newPelicula);
                 await _context.SaveChangesAsync();
             }

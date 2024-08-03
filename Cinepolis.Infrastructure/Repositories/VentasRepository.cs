@@ -64,17 +64,27 @@ namespace Cinepolis.Infrastructure.Repositories
         }
 
 
-        public async Task<IEnumerable<Venta>> GetsById(int? ventaId)
+        public async Task<VentasHeaderViewModel> GetsById(int? ventaId)
         {
             try
             {
                 var list = await _context.Venta
                     .Where(x => ventaId == null ? true : x.ventaId == ventaId)
-                    .Include(x => x.ventaEntradasDetalles)
-                    .Include(x => x.ventaProductoDetalles)
+                    .Include(x => x.Horario.Pelicula.Genero)
+                    .Include(x => x.Horario.TipoProyeccion)
+                    .Select(x => new VentasHeaderViewModel
+                    {
+                        ventaId = x.ventaId,
+                        titulo = x.Horario.Pelicula.titulo,
+                        proyeccion = x.Horario.TipoProyeccion.descripcion,
+                        genero = x.Horario.Pelicula.Genero.descripcion,
+                        fecha = x.Horario.horaInicio,
+                        sala = x.Horario.Sala.descripcion,
+                        boletos = x.ventaEntradasDetalles.ToList()
+                    })
                     .ToListAsync();
 
-                return list;
+                return list.First();
             }
             catch (Exception ex)
             {

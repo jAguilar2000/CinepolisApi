@@ -39,7 +39,7 @@ namespace Cinepolis.Api.Controllers
         public async Task<IActionResult> GetById(int? ventaId)
         {
             var result = await _ventasRepository.GetsById(ventaId);
-            var response = new ApiResponse<IEnumerable<Venta>>(result);
+            var response = new ApiResponse<VentasHeaderViewModel>(result);
             return Ok(response);
         }
 
