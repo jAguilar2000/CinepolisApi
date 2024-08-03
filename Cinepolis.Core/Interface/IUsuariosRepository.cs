@@ -7,6 +7,7 @@ namespace Cinepolis.Core.Interface
     {
         Task<IEnumerable<Usuario>> Gets();
         Task<Usuario> Get(int usuarioId);
+        Task<UsuariosViewModel> GetUserById(int usuarioId);
         Task<Usuario> Insert(UsuariosViewModel usuario);
         Task<bool> Edit(Usuario usuario);
         Task<bool> UploadImage(ImagenFileViewModel img);

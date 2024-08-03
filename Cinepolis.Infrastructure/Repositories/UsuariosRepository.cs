@@ -48,6 +48,35 @@ namespace Cinepolis.Infrastructure.Repositories
                 throw new BusinessException($"Error: {ex.Message}.");
             }
         }
+        public async Task<UsuariosViewModel> GetUserById(int usuarioId)
+        {
+            try
+            {
+                Usuario user = await _context.Usuario.FirstOrDefaultAsync(x => x.usuarioId == usuarioId);
+
+                if (user == null)
+                    throw new BusinessException("Advertencia, usuario no existe.");
+
+                UsuariosViewModel userData = new UsuariosViewModel
+                {
+                    usuario = user.usuario,
+                    password = user.password,
+                    nombres = user.nombres,
+                    apellidos = user.apellidos,
+                    telefono = user.telefono,
+                    correo = user.correo,
+                    esAdministrador = false,
+                };
+
+               
+
+                return userData;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException($"Error: {ex.Message}.");
+            }
+        }
 
         public async Task<Usuario> Insert(UsuariosViewModel usuario)
         {
