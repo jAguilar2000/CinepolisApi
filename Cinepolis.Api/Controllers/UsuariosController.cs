@@ -33,7 +33,16 @@ namespace Cinepolis.Api.Controllers
             var response = new ApiResponse<Usuario>(result);
             return Ok(response);
         }
-        
+
+        [HttpGet]
+        [Route("UsuarioById")]
+        public async Task<IActionResult> UsuarioById(int usuarioId)
+        {
+            var result = await _usuariosRepository.GetUserById(usuarioId);
+            var response = new ApiResponse<UsuariosViewModel>(result);
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(UsuariosViewModel usuario)
         {
