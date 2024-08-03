@@ -59,7 +59,7 @@ namespace Cinepolis.Infrastructure.Repositories
                 if (horario.tipoProyeccioId <= 0)
                     throw new BusinessException("Favor seleccione tipo proyección.");
 
-                bool traslapeHorario = await _context.Horarios.AnyAsync(x => x.salaId == horario.salaId && x.activo && ((horario.horaInicio >= x.horaInicio && horario.horaInicio < x.horaFinal) || (horario.horaFinal > horario.horaInicio && horario.horaFinal <= x.horaFinal) || (horario.horaInicio <= x.horaInicio && horario.horaFinal >= x.horaFinal)));
+                bool traslapeHorario = await _context.Horarios.AnyAsync(x => x.salaId == horario.salaId && x.activo && ((horario.horaInicio >= x.horaInicio && horario.horaInicio < x.horaFinal) || (horario.horaFinal > x.horaInicio && horario.horaFinal <= x.horaFinal) || (horario.horaInicio <= x.horaInicio && horario.horaFinal >= x.horaFinal)));
 
                 if (traslapeHorario)
                     throw new BusinessException("Hay un traslape de horario, con otro existente en la misma sala");
@@ -93,7 +93,7 @@ namespace Cinepolis.Infrastructure.Repositories
                 if (horario.tipoProyeccioId <= 0)
                     throw new BusinessException("Favor seleccione tipo proyección.");
 
-                bool traslapeHorario = await _context.Horarios.AnyAsync(x => x.horarioId != horario.horarioId && x.salaId == horario.salaId && x.activo && ((horario.horaInicio >= x.horaInicio && horario.horaInicio < x.horaFinal) || (horario.horaFinal > horario.horaInicio && horario.horaFinal <= x.horaFinal) || (horario.horaInicio <= x.horaInicio && horario.horaFinal >= x.horaFinal)));
+                bool traslapeHorario = await _context.Horarios.AnyAsync(x => x.horarioId != horario.horarioId && x.salaId == horario.salaId && x.activo && ((horario.horaInicio >= x.horaInicio && horario.horaInicio < x.horaFinal) || (horario.horaFinal > x.horaInicio && horario.horaFinal <= x.horaFinal) || (horario.horaInicio <= x.horaInicio && horario.horaFinal >= x.horaFinal)));
 
                 if (traslapeHorario)
                     throw new BusinessException("Hay un traslape de horario, con otro existente en la misma sala");

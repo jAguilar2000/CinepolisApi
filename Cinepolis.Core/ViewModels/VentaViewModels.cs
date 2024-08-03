@@ -30,4 +30,17 @@ namespace Cinepolis.Core.ViewModels
         [NotMapped]
         public decimal totalProducto { get { return cantidad * precio; } }
     }
+
+    public class VentasResumenViewModel
+    {
+        public int ventaId { get; set; }
+        public string pelicula { get; set; }
+        public string portada { get; set; }
+        public string genero { get; set; }
+        public DateTime fecha { get; set; }
+        public decimal? total { get; set; }
+        public int boletosComprados { get; set; }
+        public string horaInicio { get; set; }
+        public string sala { get; set; }
+    }
 }

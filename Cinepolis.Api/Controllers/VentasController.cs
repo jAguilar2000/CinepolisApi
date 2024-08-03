@@ -26,6 +26,15 @@ namespace Cinepolis.Api.Controllers
         }
 
         [HttpGet]
+        [Route("resumen")]
+        public async Task<IActionResult> GetsResumen(int? userId)
+        {
+            var result = await _ventasRepository.GetsResumen(userId);
+            var response = new ApiResponse<IEnumerable<VentasResumenViewModel>>(result);
+            return Ok(response);
+        }
+
+        [HttpGet]
         [Route("VentaById")]
         public async Task<IActionResult> GetById(int? ventaId)
         {

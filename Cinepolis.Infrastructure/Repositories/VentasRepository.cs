@@ -28,11 +28,41 @@ namespace Cinepolis.Infrastructure.Repositories
 
                 return list;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new BusinessException($"Error: {ex.Message}.");
             }
         }
+
+        public async Task<IEnumerable<VentasResumenViewModel>> GetsResumen(int? userId)
+        {
+            try
+            {
+                var list = await _context.Venta
+                    .Where(x => userId == null ? true : x.usuarioId == userId)
+                    .Include(x => x.Horario).ThenInclude(y => y.Pelicula)
+                    .Include(x => x.Horario).ThenInclude(y => y.Sala)
+                    .Select(x => new VentasResumenViewModel
+                    {
+                        ventaId = x.ventaId,
+                        pelicula = x.Horario.Pelicula.titulo,
+                        fecha = x.fecha,
+                        genero = x.Horario.Pelicula.Genero.descripcion,
+                        horaInicio = x.Horario.horaInicio.ToShortTimeString(),
+                        portada = x.Horario.Pelicula.foto,
+                        sala = x.Horario.Sala.descripcion,
+                        total = x.total,
+                        boletosComprados = x.ventaEntradasDetalles.Count(),
+                    }).ToListAsync();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException($"Error: {ex.Message}.");
+            }
+        }
+
 
         public async Task<IEnumerable<Venta>> GetsById(int? ventaId)
         {
@@ -89,7 +119,7 @@ namespace Cinepolis.Infrastructure.Repositories
                     {
                         Producto? producto = await _context.Producto.FirstOrDefaultAsync(x => x.productoId == prod.productoId);
 
-                        if(producto != null)
+                        if (producto != null)
                         {
                             if (producto.disponible >= prod.cantidad)
                             {

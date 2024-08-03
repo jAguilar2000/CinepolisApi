@@ -8,5 +8,6 @@ namespace Cinepolis.Core.Interface
         Task<IEnumerable<Venta>> Gets(int? userId);
         Task<IEnumerable<Venta>> GetsById(int? ventaId);
         Task InsertVenta(VentaViewModels venta);
+        Task<IEnumerable<VentasResumenViewModel>> GetsResumen(int? userId);
     }
 }
