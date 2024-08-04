@@ -47,7 +47,7 @@ namespace Cinepolis.Api.Controllers
         public async Task<IActionResult> Post(VentaViewModels venta)
         {
             var result = await _ventasRepository.InsertVenta(venta);
-            var response = new ApiResponse<Venta>(result);
+            var response = new ApiResponse<Venta>(result).Data;
             return Ok(response);
         }
     }
