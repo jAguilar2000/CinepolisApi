@@ -92,7 +92,7 @@ namespace Cinepolis.Infrastructure.Repositories
             }
         }
 
-        public async Task InsertVenta(VentaViewModels venta)
+        public async Task<Venta> InsertVenta(VentaViewModels venta)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
@@ -158,6 +158,8 @@ namespace Cinepolis.Infrastructure.Repositories
                     }
 
                     await transaction.CommitAsync();
+                    return newVenta;
+
                 }
                 catch (Exception ex)
                 {
