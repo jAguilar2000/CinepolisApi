@@ -37,7 +37,7 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             try
             {
-                var cloudinary = new Cloudinary(new Account("dxm", "12292425", "zOco24rA12Q2GGs"));
+                var cloudinary = new Cloudinary(new Account("dxweztzam", "122935397572425", "zOco24rA9SxbWpE57aDY12Q2GGs"));
 
                 var uploadParams = new ImageUploadParams()
                 {

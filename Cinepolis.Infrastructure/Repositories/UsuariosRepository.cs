@@ -222,6 +222,13 @@ namespace Cinepolis.Infrastructure.Repositories
         {
             try
             {
+
+
+                string base64 = foto.ImgBase64.Substring(0, 4);
+                if (!base64.Contains("data"))
+                {
+                    foto.ImgBase64 = "data:image/jpeg;base64," + foto.ImgBase64;
+                }
                 Configuraciones? configuraciones = await _context.Configuraciones.FirstOrDefaultAsync(x => x.nombre == "DIR_IMG_USUARIOS");
                 string dir = configuraciones?.valor ?? "";
 
