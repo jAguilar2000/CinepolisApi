@@ -21,7 +21,7 @@ namespace Cinepolis.Api.Controllers
         public async Task<IActionResult> Gets(int? userId)
         {
             var result = await _ventasRepository.Gets(userId);
-            var response = new ApiResponse<IEnumerable<Venta>>(result);
+            var response = new ApiResponse<IEnumerable<Venta>>(result).Data;
             return Ok(response);
         }
 
@@ -30,7 +30,7 @@ namespace Cinepolis.Api.Controllers
         public async Task<IActionResult> GetsResumen(int? userId)
         {
             var result = await _ventasRepository.GetsResumen(userId);
-            var response = new ApiResponse<IEnumerable<VentasResumenViewModel>>(result);
+            var response = new ApiResponse<IEnumerable<VentasResumenViewModel>>(result).Data;
             return Ok(response);
         }
 
@@ -39,7 +39,7 @@ namespace Cinepolis.Api.Controllers
         public async Task<IActionResult> GetById(int? ventaId)
         {
             var result = await _ventasRepository.GetsById(ventaId);
-            var response = new ApiResponse<VentasHeaderViewModel>(result);
+            var response = new ApiResponse<VentasHeaderViewModel>(result).Data;
             return Ok(response);
         }
 
