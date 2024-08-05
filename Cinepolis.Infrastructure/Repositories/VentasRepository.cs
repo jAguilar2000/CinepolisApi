@@ -5,6 +5,7 @@ using Cinepolis.Core.ViewModels;
 using Cinepolis.Infrastructure.Data;
 using CloudinaryDotNet.Core;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Cinepolis.Infrastructure.Repositories
 {
@@ -53,6 +54,21 @@ namespace Cinepolis.Infrastructure.Repositories
                         sala = x.Horario.Sala.descripcion,
                         total = x.total,
                         boletosComprados = x.ventaEntradasDetalles.Count(),
+                        inicio = x.Horario.horaInicio,
+                        productoDetalle = x.ventaProductoDetalles.Select(p => new VentasProductoViewModel
+                        {
+                            descripcion = p.Producto.descripcion,
+                            cantidad = p.cantidad,
+                            precio = p.precio,
+                            productoId = p.productoId
+                        }).ToList(),
+                        entradaDetalle = x.ventaEntradasDetalles.Select(v => new VentaEntradaDetalleViewModels
+                        {
+                            ventaDetalleId = v.ventaDetalleId,
+                            numeroBoleto = v.numeroBoleto,
+                            cantidad = v.cantidad,
+                            precio = v.precio
+                        }).ToList(),
                     }).ToListAsync();
 
                 return list;
@@ -92,7 +108,7 @@ namespace Cinepolis.Infrastructure.Repositories
             }
         }
 
-        public async Task<Venta> InsertVenta(VentaViewModels venta)
+        public async Task<VentasResumenViewModel> InsertVenta(VentaViewModels venta)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
@@ -158,7 +174,25 @@ namespace Cinepolis.Infrastructure.Repositories
                     }
 
                     await transaction.CommitAsync();
-                    return newVenta;
+
+                    var result = await _context.Venta
+                    .Where(x => x.ventaId == newVenta.ventaId)
+                    .Include(x => x.Horario).ThenInclude(y => y.Pelicula)
+                    .Include(x => x.Horario).ThenInclude(y => y.Sala)
+                    .Select(x => new VentasResumenViewModel
+                    {
+                        ventaId = x.ventaId,
+                        pelicula = x.Horario.Pelicula.titulo,
+                        fecha = x.fecha,
+                        genero = x.Horario.Pelicula.Genero.descripcion,
+                        horaInicio = x.Horario.horaInicio.ToShortTimeString(),
+                        portada = x.Horario.Pelicula.foto,
+                        sala = x.Horario.Sala.descripcion,
+                        total = x.total,
+                        boletosComprados = x.ventaEntradasDetalles.Count(),
+                    }).ToListAsync();
+
+                    return result.First();
 
                 }
                 catch (Exception ex)

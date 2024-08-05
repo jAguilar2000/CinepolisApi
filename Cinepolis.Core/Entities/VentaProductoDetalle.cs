@@ -15,5 +15,8 @@ namespace Cinepolis.Core.Entities
         [ForeignKey("ventaId")]
         [JsonIgnore]
         public virtual Venta? Venta { get; set; }
+        [ForeignKey("productoId")]
+        [JsonIgnore]
+        public virtual Producto? Producto { get; set; }
     }
 }
